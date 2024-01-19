@@ -542,6 +542,12 @@ class WP_Navigation_Block_Renderer {
 		if ( ! $should_load_view_script ) {
 			return '';
 		}
+
+		$gutenberg_experiments = get_option( 'gutenberg-experiments' );
+		$is_experiment = ( $gutenberg_experiments && array_key_exists( 'gutenberg-navigation-overlay-auto', $gutenberg_experiments ) ) ? true : false;
+
+		$overlayMenu = $is_experiment ? 'auto' : $attributes['overlayMenu'];
+
 		// When adding to this array be mindful of security concerns.
 		$nav_element_context    = wp_json_encode(
 			array(
@@ -549,7 +555,7 @@ class WP_Navigation_Block_Renderer {
 				'type'            => 'overlay',
 				'roleAttribute'   => '',
 				'ariaLabel'       => __( 'Menu' ),
-				'overlayMenu'     => $attributes['overlayMenu'],
+				'overlayMenu'     => $overlayMenu,
 			),
 			JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP
 		);
@@ -564,11 +570,11 @@ class WP_Navigation_Block_Renderer {
 			$nav_element_directives .= ' '; // space separator
 			$nav_element_directives .= 'data-wp-class--is-collapsed="context.isCollapsed"';
 		}
-		if ( isset( $attributes['overlayMenu'] ) && 'mobile' === $attributes['overlayMenu'] ) {
+		if ( isset( $overlayMenu ) && 'mobile' === $overlayMenu ) {
 			$nav_element_directives .= ' '; // space separator
 			$nav_element_directives .= 'data-wp-init="callbacks.initMobileNav"';
 		}
-		if ( isset( $attributes['overlayMenu'] ) && 'auto' === $attributes['overlayMenu'] ) {
+		if ( isset( $overlayMenu ) && 'auto' === $overlayMenu ) {
 			$nav_element_directives .= ' '; // space separator
 			$nav_element_directives .= 'data-wp-init="callbacks.initAutoNav"';
 		}
