@@ -3891,7 +3891,6 @@ class WP_Theme_JSON_Gutenberg {
 	 *
 	 * @return string Block selector with block style variation selector added to it.
 	 */
-	public static function get_block_style_variation_selector( $variation_name, $block_selector ) {
 	protected static function get_block_style_variation_selector( $variation_name, $block_selector ) {
 		$variation_class = ".is-style-$variation_name";
 
