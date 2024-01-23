@@ -142,46 +142,31 @@ export default function Image( {
 		[ id, isSingleSelected ]
 	);
 
-	const {
-		canInsertCover,
-		imageEditing,
-		imageSizes,
-		maxWidth,
-		mediaUpload,
-		multiImageSelection,
-	} = useSelect(
-		( select ) => {
-			const {
-				getBlockRootClientId,
-				getMultiSelectedBlockClientIds,
-				getBlockName,
-				getSettings,
-				canInsertBlockType,
-			} = select( blockEditorStore );
+	const { canInsertCover, imageEditing, imageSizes, maxWidth, mediaUpload } =
+		useSelect(
+			( select ) => {
+				const {
+					getBlockRootClientId,
+					getSettings,
+					canInsertBlockType,
+				} = select( blockEditorStore );
 
-			const rootClientId = getBlockRootClientId( clientId );
-			const settings = getSettings();
-			const multiSelectedClientIds = getMultiSelectedBlockClientIds();
+				const rootClientId = getBlockRootClientId( clientId );
+				const settings = getSettings();
 
-			return {
-				imageEditing: settings.imageEditing,
-				imageSizes: settings.imageSizes,
-				maxWidth: settings.maxWidth,
-				mediaUpload: settings.mediaUpload,
-				canInsertCover: canInsertBlockType(
-					'core/cover',
-					rootClientId
-				),
-				multiImageSelection:
-					multiSelectedClientIds.length &&
-					multiSelectedClientIds.every(
-						( _clientId ) =>
-							getBlockName( _clientId ) === 'core/image'
+				return {
+					imageEditing: settings.imageEditing,
+					imageSizes: settings.imageSizes,
+					maxWidth: settings.maxWidth,
+					mediaUpload: settings.mediaUpload,
+					canInsertCover: canInsertBlockType(
+						'core/cover',
+						rootClientId
 					),
-			};
-		},
-		[ clientId ]
-	);
+				};
+			},
+			[ clientId ]
+		);
 
 	const { replaceBlocks, toggleSelection } = useDispatch( blockEditorStore );
 	const { createErrorNotice, createSuccessNotice } =
@@ -758,7 +743,7 @@ export default function Image( {
 				insertBlocksAfter={ insertBlocksAfter }
 				label={ __( 'Image caption text' ) }
 				showToolbarButton={
-					! multiImageSelection && hasNonContentControls
+					! isSingleSelected && hasNonContentControls
 				}
 			/>
 		</>

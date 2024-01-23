@@ -362,7 +362,7 @@ export function ImageEdit( {
 				temporaryURL={ temporaryURL }
 				attributes={ attributes }
 				setAttributes={ setAttributes }
-				isSelected={ isSingleSelected }
+				isSingleSelected={ isSingleSelected }
 				insertBlocksAfter={ insertBlocksAfter }
 				onReplace={ onReplace }
 				onSelectImage={ onSelectImage }
