@@ -39,7 +39,7 @@ class WP_Font_Family {
 	 */
 	public function __construct( $font_data = array() ) {
 		if ( empty( $font_data['slug'] ) ) {
-			throw new Exception( 'Font family data is missing the slug.' );
+			throw new Exception( __( 'Font family data is missing the slug.', 'gutenberg' ) );
 		}
 		$this->data = $font_data;
 	}

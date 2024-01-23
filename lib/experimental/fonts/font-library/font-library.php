@@ -24,7 +24,7 @@ function gutenberg_init_font_library_routes() {
 	$args = array(
 		'public'                         => false,
 		'_builtin'                       => true,  /* internal use only. don't use this when registering your own post type. */
-		'label'                          => 'Font Family',
+		'label'                          => __( 'Font Family', 'gutenberg' ),
 		'show_in_rest'                   => true,
 		'rest_base'                      => 'font-families',
 		'rest_controller_class'          => 'WP_REST_Font_Families_Controller',
@@ -77,7 +77,7 @@ if ( ! function_exists( 'wp_unregister_font_collection' ) ) {
 
 $default_font_collection = array(
 	'slug'        => 'default-font-collection',
-	'name'        => 'Google Fonts',
+	'name'        => __( 'Google Fonts', 'gutenberg' ),
 	'description' => __( 'Add from Google Fonts. Fonts are copied to and served from your site.', 'gutenberg' ),
 	'src'         => 'https://s.w.org/images/fonts/16.7/collections/google-fonts-with-preview.json',
 );

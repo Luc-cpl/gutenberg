@@ -40,19 +40,19 @@ class WP_Font_Collection {
 	 */
 	public function __construct( $config ) {
 		if ( empty( $config ) || ! is_array( $config ) ) {
-			throw new Exception( 'Font Collection config options is required as a non-empty array.' );
+			throw new Exception( __( 'Font Collection config options is required as a non-empty array.', 'gutenberg' ) );
 		}
 
 		if ( empty( $config['slug'] ) || ! is_string( $config['slug'] ) ) {
-			throw new Exception( 'Font Collection config slug is required as a non-empty string.' );
+			throw new Exception( __( 'Font Collection config slug is required as a non-empty string.', 'gutenberg' ) );
 		}
 
 		if ( empty( $config['name'] ) || ! is_string( $config['name'] ) ) {
-			throw new Exception( 'Font Collection config name is required as a non-empty string.' );
+			throw new Exception( __( 'Font Collection config name is required as a non-empty string.', 'gutenberg' ) );
 		}
 
 		if ( ( empty( $config['src'] ) || ! is_string( $config['src'] ) ) && ( empty( $config['data'] ) ) ) {
-			throw new Exception( 'Font Collection config "src" option OR "data" option is required.' );
+			throw new Exception( __( 'Font Collection config "src" option OR "data" option is required.', 'gutenberg' ) );
 		}
 
 		$this->config = $config;
