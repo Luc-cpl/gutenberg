@@ -338,6 +338,8 @@ function block_core_navigation_get_fallback_blocks() {
 	if ( class_exists( 'WP_Navigation_Fallback' ) ) {
 		$navigation_post = WP_Navigation_Fallback::get_fallback();
 	} else {
+		// Refactoring required: this class must be guarded as it is available only in Gutenberg, and not in Core.
+		// phpcs:ignore Gutenberg.CodeAnalysis.ForbiddenFunctionsAndClasses.ForbiddenClassUsage
 		$navigation_post = Gutenberg_Navigation_Fallback::get_fallback();
 	}
 

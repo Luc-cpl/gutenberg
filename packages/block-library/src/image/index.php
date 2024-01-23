@@ -37,7 +37,6 @@ function render_block_core_image( $attributes, $content, $block ) {
 	$link_destination  = isset( $attributes['linkDestination'] ) ? $attributes['linkDestination'] : 'none';
 	$lightbox_settings = block_core_image_get_lightbox_settings( $block->parsed_block );
 
-	$is_gutenberg_plugin = defined( 'IS_GUTENBERG_PLUGIN' ) && IS_GUTENBERG_PLUGIN;
 	$view_js_file_handle = 'wp-block-image-view';
 	$script_handles      = $block->block_type->view_script_handles;
 
@@ -51,7 +50,7 @@ function render_block_core_image( $attributes, $content, $block ) {
 		isset( $lightbox_settings['enabled'] ) &&
 		true === $lightbox_settings['enabled']
 	) {
-		if ( $is_gutenberg_plugin ) {
+		if ( defined( 'IS_GUTENBERG_PLUGIN' ) && IS_GUTENBERG_PLUGIN ) {
 			gutenberg_enqueue_module( '@wordpress/block-library/image' );
 			// Remove the view script because we are using the module.
 			$block->block_type->view_script_handles = array_diff( $script_handles, array( $view_js_file_handle ) );

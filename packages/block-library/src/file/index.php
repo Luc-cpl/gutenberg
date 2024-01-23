@@ -15,12 +15,11 @@
  * @return string Returns the block content.
  */
 function render_block_core_file( $attributes, $content, $block ) {
-	$is_gutenberg_plugin     = defined( 'IS_GUTENBERG_PLUGIN' ) && IS_GUTENBERG_PLUGIN;
 	$should_load_view_script = ! empty( $attributes['displayPreview'] );
 	$view_js_file            = 'wp-block-file-view';
 	$script_handles          = $block->block_type->view_script_handles;
 
-	if ( $is_gutenberg_plugin ) {
+	if ( defined( 'IS_GUTENBERG_PLUGIN' ) && IS_GUTENBERG_PLUGIN ) {
 		if ( $should_load_view_script ) {
 			gutenberg_enqueue_module( '@wordpress/block-library/file-block' );
 		}

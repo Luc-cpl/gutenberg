@@ -86,11 +86,10 @@ function render_block_core_search( $attributes, $content, $block ) {
 			$input->set_attribute( 'tabindex', '-1' );
 		}
 
-		$is_gutenberg_plugin = defined( 'IS_GUTENBERG_PLUGIN' ) && IS_GUTENBERG_PLUGIN;
-		$script_handles      = $block->block_type->view_script_handles;
-		$view_js_file        = 'wp-block-search-view';
+		$script_handles = $block->block_type->view_script_handles;
+		$view_js_file   = 'wp-block-search-view';
 
-		if ( $is_gutenberg_plugin ) {
+		if ( defined( 'IS_GUTENBERG_PLUGIN' ) && IS_GUTENBERG_PLUGIN ) {
 			if ( $is_expandable_searchfield ) {
 				gutenberg_enqueue_module( '@wordpress/block-library/search-block' );
 			}

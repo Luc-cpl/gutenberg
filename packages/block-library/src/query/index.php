@@ -63,12 +63,11 @@ function render_block_core_query( $attributes, $content, $block ) {
 		}
 	}
 
-	$is_gutenberg_plugin     = defined( 'IS_GUTENBERG_PLUGIN' ) && IS_GUTENBERG_PLUGIN;
 	$should_load_view_script = $attributes['enhancedPagination'] && isset( $attributes['queryId'] );
 	$view_asset              = 'wp-block-query-view';
 	$script_handles          = $block->block_type->view_script_handles;
 
-	if ( $is_gutenberg_plugin ) {
+	if ( defined( 'IS_GUTENBERG_PLUGIN' ) && IS_GUTENBERG_PLUGIN ) {
 		if ( $should_load_view_script ) {
 			gutenberg_enqueue_module( '@wordpress/block-library/query' );
 		}
