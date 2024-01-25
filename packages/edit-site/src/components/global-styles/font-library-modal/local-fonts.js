@@ -14,6 +14,7 @@ import {
 	privateApis as componentsPrivateApis,
 } from '@wordpress/components';
 import { useContext, useState, useEffect } from '@wordpress/element';
+import { l10n } from '@wordpress/editor';
 
 /**
  * Internal dependencies
@@ -31,11 +32,11 @@ function LocalFonts() {
 	const { installFont } = useContext( FontLibraryContext );
 	const [ notice, setNotice ] = useState( null );
 	const [ isUploading, setIsUploading ] = useState( false );
-	const supportedFormats =
-		ALLOWED_FILE_EXTENSIONS.slice( 0, -1 )
-			.map( ( extension ) => `.${ extension }` )
-			.join( ', ' ) +
-		` ${ __( 'and' ) } .${ ALLOWED_FILE_EXTENSIONS.slice( -1 ) }`;
+	const { listItemSeparator } = l10n;
+
+	const supportedFormats = ALLOWED_FILE_EXTENSIONS.map(
+		( extension ) => `.${ extension }`
+	).join( listItemSeparator );
 
 	const handleDropZone = ( files ) => {
 		handleFilesUpload( files );
@@ -212,7 +213,7 @@ function LocalFonts() {
 				<Spacer margin={ 2 } />
 				<Text className="font-library-modal__upload-area__text">
 					{ sprintf(
-						/* translators: %s: supported font formats: ex: .ttf, .woff and .woff2 */
+						/* translators: %s: Supported font formats: e.g.: .ttf, .woff, .woff2. */
 						__(
 							'Uploaded fonts appear in your library and can be used in your theme. Supported formats: %s.'
 						),
