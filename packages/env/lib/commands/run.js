@@ -83,11 +83,12 @@ function spawnCommandDirectly( config, container, command, envCwd, spinner ) {
 		'compose',
 		'-f',
 		config.dockerComposeConfigPath,
-		'exec',
+		'run',
 		'-w',
 		envCwd,
 		'--user',
 		hostUser.fullUser,
+		'--rm',
 	];
 
 	if ( ! process.stdout.isTTY ) {
@@ -103,7 +104,10 @@ function spawnCommandDirectly( config, container, command, envCwd, spinner ) {
 		const childProc = spawn(
 			'docker',
 			composeCommand,
-			{ stdio: 'inherit' },
+			{
+				stdio: 'inherit',
+				shell: true,
+			},
 			spinner
 		);
 		childProc.on( 'error', reject );
